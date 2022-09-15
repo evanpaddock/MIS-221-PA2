@@ -3,7 +3,12 @@ string userName = GetUserName();
  
 int userSelection = SelectionMenu();
 
-UserSelectionVerify(userSelection, userName);
+int controlInt = UserSelectionVerify(userSelection, userName);
+
+while(controlInt == -1)
+{
+controlInt = VerifiyUserChoiceLoop(controlInt, userSelection, userName);
+}
 
 BreakIntoProgram(userSelection);
  
@@ -29,15 +34,11 @@ static int SelectionMenu()
 
     return (userSelection);
 }
-static void UserSelectionVerify(int userSelection, string userName)
+static int UserSelectionVerify(int userSelection, string userName)
 {
     System.Console.WriteLine($"You chose {userSelection} is this correct? 0 for yes, -1 for no");
     int controlInt = int.Parse(Console.ReadLine());
-    if( controlInt == -1)
-    {
-        System.Console.WriteLine($"{userName} please try again");
-        SelectionMenu();
-    }
+    return(controlInt);
     
 }
 static void BreakIntoProgram(int userSelection)
@@ -56,8 +57,19 @@ static void BreakIntoProgram(int userSelection)
 
         case 3:
         System.Console.WriteLine("You are now exiting the program");
+        ProgramExit();
         break;
     }
+}
+static int VerifiyUserChoiceLoop(int controlInt, int userSelection, string userName)
+{
+    if(controlInt == -1)
+    {
+        System.Console.WriteLine($"{userName} please try again");
+        SelectionMenu();
+        UserSelectionVerify(userSelection, userName);
+    }
+    return(controlInt);
 }
 //Program Methods
 static void BudgetCalculator()
