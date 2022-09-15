@@ -1,0 +1,15 @@
+/Users/evanpaddock/Desktop/MIS 221/PA2/bin/Debug/net6.0/PA2
+/Users/evanpaddock/Desktop/MIS 221/PA2/bin/Debug/net6.0/PA2.deps.json
+/Users/evanpaddock/Desktop/MIS 221/PA2/bin/Debug/net6.0/PA2.runtimeconfig.json
+/Users/evanpaddock/Desktop/MIS 221/PA2/bin/Debug/net6.0/PA2.dll
+/Users/evanpaddock/Desktop/MIS 221/PA2/bin/Debug/net6.0/PA2.pdb
+/Users/evanpaddock/Desktop/MIS 221/PA2/obj/Debug/net6.0/PA2.csproj.AssemblyReference.cache
+/Users/evanpaddock/Desktop/MIS 221/PA2/obj/Debug/net6.0/PA2.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evanpaddock/Desktop/MIS 221/PA2/obj/Debug/net6.0/PA2.AssemblyInfoInputs.cache
+/Users/evanpaddock/Desktop/MIS 221/PA2/obj/Debug/net6.0/PA2.AssemblyInfo.cs
+/Users/evanpaddock/Desktop/MIS 221/PA2/obj/Debug/net6.0/PA2.csproj.CoreCompileInputs.cache
+/Users/evanpaddock/Desktop/MIS 221/PA2/obj/Debug/net6.0/PA2.dll
+/Users/evanpaddock/Desktop/MIS 221/PA2/obj/Debug/net6.0/refint/PA2.dll
+/Users/evanpaddock/Desktop/MIS 221/PA2/obj/Debug/net6.0/PA2.pdb
+/Users/evanpaddock/Desktop/MIS 221/PA2/obj/Debug/net6.0/PA2.genruntimeconfig.cache
+/Users/evanpaddock/Desktop/MIS 221/PA2/obj/Debug/net6.0/ref/PA2.dll
