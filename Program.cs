@@ -1,28 +1,33 @@
 ﻿//Program Main
 string userName = GetUserName();
- 
-int userSelection = SelectionMenu();
 
-int controlInt = UserSelectionVerify(userSelection, userName);
+int userMenuSelection = AskSelection(userName);
 
-while(controlInt == -1)
+int userVerificationNumber = UserSelectionVerification(userMenuSelection);
+
+while(userVerificationNumber != 0 )
 {
-controlInt = VerifiyUserChoiceLoop(controlInt, userSelection, userName);
+    Console.Clear();
+    System.Console.WriteLine("I'm sorry, please try that again.");
+    System.Console.WriteLine("");
+    userMenuSelection = AskSelection(userName);
+    userVerificationNumber = UserSelectionVerification(userMenuSelection);
 }
 
-BreakIntoProgram(userSelection);
+ProgramRun(userMenuSelection);
  
 //Main Methods
 static string GetUserName()
 {
+    Console.Clear();
     System.Console.WriteLine("What is your name?");
-    string userName = Console.ReadLine();
-    System.Console.WriteLine($"Hello {userName} what would you like to do today?");
-    
-    return(userName);
+    return (Console.ReadLine());
 }
-static int SelectionMenu()
+
+static int AskSelection(string userName)
 {
+    Console.Clear();
+    System.Console.WriteLine($"Hello {userName} what would you like to do today?");
     System.Console.WriteLine("");
     System.Console.WriteLine("Press \"1\" for Budget Calulator");
     System.Console.WriteLine("Press \"2\" for Currency Converter");
@@ -30,58 +35,54 @@ static int SelectionMenu()
     System.Console.WriteLine("");
     System.Console.WriteLine("Then press enter");
 
-    int userSelection = int.Parse(Console.ReadLine());
+    return (int.Parse(Console.ReadLine()));
+}
 
-    return (userSelection);
-}
-static int UserSelectionVerify(int userSelection, string userName)
+static int UserSelectionVerification(int userMenuSelection)
 {
-    System.Console.WriteLine($"You chose {userSelection} is this correct? 0 for yes, -1 for no");
-    int controlInt = int.Parse(Console.ReadLine());
-    return(controlInt);
-    
+    Console.Clear();
+    System.Console.WriteLine($"You chose {userMenuSelection}, is this correct?");
+    System.Console.WriteLine("0 for yes, -1 for no");
+    System.Console.WriteLine("Then press enter");
+    return(int.Parse(Console.ReadLine()));
 }
-static void BreakIntoProgram(int userSelection)
+
+static void ProgramRun(int userMenuSelection)
 {
-    switch(userSelection)
+    switch(userMenuSelection)
     {
         case 1:
-        System.Console.WriteLine("You are now using the Budget Calculator");
-        BudgetCalculator();
+        {
+            BudgetCalculator();
+        }
         break;
 
         case 2:
-        System.Console.WriteLine("You are now using the Currency Converter");
-        CurrencyConverter();
+        {
+            CurrencyConverter();
+        }
         break;
-
         case 3:
-        System.Console.WriteLine("You are now exiting the program");
-        ProgramExit();
+        {
+            ProgramExit();
+        }
         break;
-    }
+    };
 }
-static int VerifiyUserChoiceLoop(int controlInt, int userSelection, string userName)
-{
-    if(controlInt == -1)
-    {
-        System.Console.WriteLine($"{userName} please try again");
-        SelectionMenu();
-        UserSelectionVerify(userSelection, userName);
-    }
-    return(controlInt);
-}
+
 //Program Methods
 static void BudgetCalculator()
 {
-    System.Console.WriteLine("This is the Budget Calculator");
+    System.Console.WriteLine("This is the Budget Calculator!");
 
 }
+
 static void CurrencyConverter()
 {
-    System.Console.WriteLine("Ths is the Currency Converter");
+    System.Console.WriteLine("Ths is the Currency Converter!");
 }
+
 static void ProgramExit()
 {
-    System.Console.WriteLine("The program is now closing");
+    System.Console.WriteLine("The program is now closing.");
 }
