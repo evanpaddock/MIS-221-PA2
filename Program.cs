@@ -8,7 +8,7 @@ int userVerificationNumber = UserSelectionVerification(userMenuSelection);
 while(userVerificationNumber != 0 )
 {
     Console.Clear();
-    System.Console.WriteLine("I'm sorry, please try that again.");
+    System.Console.WriteLine("Sorry, please try that again.");
     System.Console.WriteLine("");
     userMenuSelection = AskSelection(userName);
     userVerificationNumber = UserSelectionVerification(userMenuSelection);
@@ -74,15 +74,18 @@ static void ProgramRun(int userMenuSelection)
 static void BudgetCalculator()
 {
     System.Console.WriteLine("This is the Budget Calculator!");
+    System.Console.WriteLine("");
 
 }
 
 static void CurrencyConverter()
 {
     System.Console.WriteLine("Ths is the Currency Converter!");
+    System.Console.WriteLine("");
 }
 
 static void ProgramExit()
 {
     System.Console.WriteLine("The program is now closing.");
+    System.Console.WriteLine("");
 }
