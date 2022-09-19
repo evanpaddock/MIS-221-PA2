@@ -8,26 +8,24 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\RiskIt4ThaBiscuit\\.nuget\\packages\\": {}
+    "/Users/evanpaddock/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\RiskIt4ThaBiscuit\\Desktop\\MIS 221\\PA2\\MIS-221-PA2\\PA2.csproj",
+      "projectUniqueName": "/Users/evanpaddock/Desktop/MIS 221/MIS-221-PA2/PA2.csproj",
       "projectName": "PA2",
-      "projectPath": "C:\\Users\\RiskIt4ThaBiscuit\\Desktop\\MIS 221\\PA2\\MIS-221-PA2\\PA2.csproj",
-      "packagesPath": "C:\\Users\\RiskIt4ThaBiscuit\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\RiskIt4ThaBiscuit\\Desktop\\MIS 221\\PA2\\MIS-221-PA2\\obj\\",
+      "projectPath": "/Users/evanpaddock/Desktop/MIS 221/MIS-221-PA2/PA2.csproj",
+      "packagesPath": "/Users/evanpaddock/.nuget/packages/",
+      "outputPath": "/Users/evanpaddock/Desktop/MIS 221/MIS-221-PA2/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\RiskIt4ThaBiscuit\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/evanpaddock/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -61,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
       }
     }
   }
