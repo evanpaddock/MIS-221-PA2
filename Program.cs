@@ -3,7 +3,7 @@ string userName = GetUserName();
 
 int userMenuSelection = AskSelection(userName);
 
-VerifySelection(userMenuSelection, userName);
+VerifySelection(ref userMenuSelection, userName);
 
 ProgramRun(userMenuSelection);
 
@@ -17,6 +17,8 @@ static string GetUserName()
 
 static int AskSelection(string userName)
 {
+    System.Console.WriteLine("Press any key to continue.");
+    Console.ReadKey();
     Console.Clear();
     System.Console.WriteLine($"Hello {userName}, what would you like to do today?");
     System.Console.WriteLine("");
@@ -29,12 +31,12 @@ static int AskSelection(string userName)
     return (int.Parse(Console.ReadLine()));
 }
 
-static int VerifySelection(int userMenuSelection, string userName)
+static int VerifySelection(ref int userMenuSelection, string userName)
 {
-    while (userMenuSelection < 1 && userMenuSelection > 3)
+    while(userMenuSelection < 1 || userMenuSelection > 3 )
     {
         System.Console.WriteLine($"Sorry, {userMenuSelection} is not a valid selection please try again.");
-        userMenuSelection = AskSelection(userName);
+        userMenuSelection = AskSelection(userName);   
     }
     return(userMenuSelection);
 }
@@ -66,7 +68,7 @@ static void ProgramRun(int userMenuSelection)
 static void BudgetCalculator()
 {
     //constants
-    const double savingsPortion = 2;
+    const double savingsPortion = .2;
     const double housingPortion = .25;
     const double foodPortion = .16;
     const double transportPortion = .15;
@@ -85,7 +87,7 @@ static void BudgetCalculator()
     int entertainSplitNumber = int.Parse(Console.ReadLine());
 
     //Monthly Savings
-    System.Console.WriteLine($"Your monthly savings amount should be ${Math.Round(monthlyIncome * savingsPortion,2)}");
+    System.Console.WriteLine($"Your monthly savings amount should be {(monthlyIncome * savingsPortion).ToString("C2")}");
     System.Console.WriteLine("");
 
     //Math for monthly Income - Savings
