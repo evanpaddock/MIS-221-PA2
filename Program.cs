@@ -31,12 +31,11 @@ static int AskSelection(string userName)
 
 static int VerifySelection(int userMenuSelection, string userName)
 {
-    while(userMenuSelection !>= 3 && userMenuSelection !<= 1)
+    while (userMenuSelection < 1 && userMenuSelection > 3)
     {
         System.Console.WriteLine($"Sorry, {userMenuSelection} is not a valid selection please try again.");
         userMenuSelection = AskSelection(userName);
     }
-
     return(userMenuSelection);
 }
 
