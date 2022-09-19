@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/evanpaddock/Desktop/MIS 221/MIS-221-PA2/PA2.csproj": {}
+    "C:\\Users\\RiskIt4ThaBiscuit\\Desktop\\MIS 221\\PA2\\MIS-221-PA2\\PA2.csproj": {}
   },
   "projects": {
-    "/Users/evanpaddock/Desktop/MIS 221/MIS-221-PA2/PA2.csproj": {
+    "C:\\Users\\RiskIt4ThaBiscuit\\Desktop\\MIS 221\\PA2\\MIS-221-PA2\\PA2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/evanpaddock/Desktop/MIS 221/MIS-221-PA2/PA2.csproj",
+        "projectUniqueName": "C:\\Users\\RiskIt4ThaBiscuit\\Desktop\\MIS 221\\PA2\\MIS-221-PA2\\PA2.csproj",
         "projectName": "PA2",
-        "projectPath": "/Users/evanpaddock/Desktop/MIS 221/MIS-221-PA2/PA2.csproj",
-        "packagesPath": "/Users/evanpaddock/.nuget/packages/",
-        "outputPath": "/Users/evanpaddock/Desktop/MIS 221/MIS-221-PA2/obj/",
+        "projectPath": "C:\\Users\\RiskIt4ThaBiscuit\\Desktop\\MIS 221\\PA2\\MIS-221-PA2\\PA2.csproj",
+        "packagesPath": "C:\\Users\\RiskIt4ThaBiscuit\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\RiskIt4ThaBiscuit\\Desktop\\MIS 221\\PA2\\MIS-221-PA2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/evanpaddock/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\RiskIt4ThaBiscuit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -53,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
