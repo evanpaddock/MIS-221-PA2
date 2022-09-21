@@ -109,6 +109,7 @@ static void BudgetCalculator()
     System.Console.WriteLine($"Your monthly Entertainment and Personal amount is {(newMonthlyIncome * entertainPortion).ToString("C2")} ");
     System.Console.WriteLine("");
 
+    //Entertainment per Person
     double moneyPerPerson = (newMonthlyIncome * entertainPortion) / entertainSplitNumber;
     System.Console.WriteLine($"Each person should receive {(moneyPerPerson).ToString("C2")}");
     System.Console.WriteLine("");
