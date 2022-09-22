@@ -78,49 +78,137 @@ static void BudgetCalculator()
     
 
     //Program Start
+    Console.Clear();
+
+
     System.Console.WriteLine("Welcome to the Budget Calculator!");
     System.Console.WriteLine("");
-    System.Console.WriteLine("What is your monthly income? (Do not enter a dollar sign)");
-    double monthlyIncome = double.Parse(Console.ReadLine());
 
-    System.Console.WriteLine("For Entertainment or Personal uses, how many people do wish to split this between?(Enter as a single digit value, for example \"5\" for 5 people");
-    int entertainSplitNumber = int.Parse(Console.ReadLine());
+    //Ask Monthly Income
+    double monthlyIncome = AskUserIncome();
+
+    //Ask Number to Split Entertainment
+    int entertainPersonNumber = AskEntertainPersNumber();
 
     //Monthly Savings
-    System.Console.WriteLine($"Your monthly savings amount should be {(monthlyIncome * savingsPortion).ToString("C2")}");
-    System.Console.WriteLine("");
+    double userSaving = MonthlySavings(monthlyIncome);
 
     //Math for monthly Income - Savings
-    double newMonthlyIncome = monthlyIncome - savingsPortion;
+    double newMonthlyIncome = monthlyIncome - userSaving;
 
     //Housing Portion
-    System.Console.WriteLine($"Your monthly Housing amount is {(newMonthlyIncome * housingPortion).ToString("C2")}");
-    System.Console.WriteLine("");
+    double userHousing = UserHousing(newMonthlyIncome);
 
     //Food Portion
-    System.Console.WriteLine($"Your monthly Food amount is {(newMonthlyIncome * foodPortion).ToString("C2")} ");
-    System.Console.WriteLine("");
+    double userFood = UserFood(newMonthlyIncome);
 
     //Transport Portion
-    System.Console.WriteLine($"Your monthly Transport amount is {(newMonthlyIncome * transportPortion).ToString("C2")} ");
-    System.Console.WriteLine("");
+    double userTransport = UserTransport(newMonthlyIncome);
 
     //Entertainment/Personal Portion
-    System.Console.WriteLine($"Your monthly Entertainment and Personal amount is {(newMonthlyIncome * entertainPortion).ToString("C2")} ");
-    System.Console.WriteLine("");
+    double userEntertainPersonal = UserEntertainPersonal(newMonthlyIncome);
 
     //Entertainment per Person
-    double moneyPerPerson = (newMonthlyIncome * entertainPortion) / entertainSplitNumber;
-    System.Console.WriteLine($"Each person should receive {(moneyPerPerson).ToString("C2")}");
-    System.Console.WriteLine("");
+    double moneyPerPerson = MoneyPerPerson(newMonthlyIncome, entertainPersonNumber);
     
     //Utilites Portion
-    System.Console.WriteLine($"Your monthly Utilites amount is {(newMonthlyIncome * utilitesPortion).ToString("C2")} ");
-    System.Console.WriteLine("");
+    double userUtilites = UserUtilites(newMonthlyIncome);
 
     //Clothing Portion
-    System.Console.WriteLine($"Your monthly Clothing amount is {(newMonthlyIncome * clothingPortion).ToString("C2")} ");
-    System.Console.WriteLine("");
+    double userClothing = UserClothing(newMonthlyIncome);
+
+    //User Amount Used Already 
+
+    
+    
+    
+    
+    //Methods
+    static double AskUserIncome()
+    {
+        System.Console.WriteLine("What is your monthly income? (Do not enter a dollar sign)");
+        double monthlyIncome = double.Parse(Console.ReadLine());
+        return(monthlyIncome);
+    }
+
+    static int AskEntertainPersNumber()
+    {
+        System.Console.WriteLine("For Entertainment or Personal uses, how many people do wish to split this between?(Enter as a single digit value, for example \"5\" for 5 people");
+        return(int.Parse(Console.ReadLine()));
+    }
+
+    static double MonthlySavings(double monthlyIncome)
+    {
+        double userSavings = monthlyIncome * savingsPortion;
+        System.Console.WriteLine($"Savings: {userSavings.ToString("C2")}");
+        System.Console.WriteLine("");
+
+        return(userSavings);
+    }
+
+    //Calculating Methods
+
+    static double UserHousing(double newMonthlyIncome)
+        {
+        double userHousing = (newMonthlyIncome * housingPortion);
+        System.Console.WriteLine($"Housing: {userHousing.ToString("C2")}");
+        System.Console.WriteLine("");
+
+        return(userHousing);
+        }
+
+    static double UserFood(double newMonthlyIncome)
+        {
+        double userFood = (newMonthlyIncome * foodPortion);
+        System.Console.WriteLine($"Food: {userFood.ToString("C2")} ");
+        System.Console.WriteLine("");
+        return(userFood);
+        }
+
+    static double UserTransport(double newMonthlyIncome)
+    {
+        double userTransport = (newMonthlyIncome * transportPortion);
+        System.Console.WriteLine($"Transport: {userTransport.ToString("C2")} ");
+        System.Console.WriteLine("");
+
+        return(userTransport);
+    }
+
+    static double UserClothing(double newMonthlyIncome)
+        {
+        double userClothing = (newMonthlyIncome * clothingPortion);
+        System.Console.WriteLine($"Clothing: {userClothing.ToString("C2")} ");
+        System.Console.WriteLine("");
+
+        return(userClothing);
+        }
+    
+    static double UserEntertainPersonal(double newMonthlyIncome)
+    {
+        double userEntertain = (newMonthlyIncome * entertainPortion);
+        System.Console.WriteLine($"Entertainment and Personal: {userEntertain.ToString("C2")} ");
+        System.Console.WriteLine("");
+
+        return(userEntertain);
+    }
+
+    static double MoneyPerPerson(double newMonthlyIncome, int entertainPersonNumber)
+    {
+        double moneyPerPerson = (newMonthlyIncome * entertainPortion) / entertainPersonNumber;
+        System.Console.WriteLine($"Per person amount: {(moneyPerPerson).ToString("C2")}");
+        System.Console.WriteLine("");
+
+        return(moneyPerPerson);
+    }
+
+    static double UserUtilites(double newMonthlyIncome)
+    {
+        double userUtilities = (newMonthlyIncome * utilitesPortion);
+        System.Console.WriteLine($"Utilites: {userUtilities.ToString("C2")} ");
+        System.Console.WriteLine("");
+
+        return(userUtilities);
+    }
 
     //Closing
     System.Console.WriteLine("Thank you for using the budget calculator!");
