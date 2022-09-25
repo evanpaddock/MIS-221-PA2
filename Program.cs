@@ -85,10 +85,16 @@ static void BudgetCalculator()
     System.Console.WriteLine("");
 
     //Ask Monthly Income
-    double monthlyIncome = AskUserIncome();
+    double monthlyIncome = 0;
+    monthlyIncome = AskUserIncome();
+
+    //Tests if Monthly Income is negative. If so will rerun until it is not, this is because monthly income cannot be negative for an individual
+    monthlyIncome = MonthlyIncomeNegative(ref monthlyIncome);
 
     //Ask Number to Split Entertainment
-    int entertainPersonNumber = AskEntertainPersNumber();
+    int entertainPersonsNumber = AskEntertainPersNumber();
+
+    //Displayed Amounts for user budget below
 
     //Monthly Savings
     double userSaving = MonthlySavings(monthlyIncome);
@@ -108,22 +114,52 @@ static void BudgetCalculator()
     //Entertainment/Personal Portion
     double userEntertainPersonal = UserEntertainPersonal(newMonthlyIncome);
 
-    //Entertainment per Person
-    double moneyPerPerson = MoneyPerPerson(newMonthlyIncome, entertainPersonNumber);
-    
+    //Entertainment Per Person
+    double moneyPerPerson = MoneyPerPerson(newMonthlyIncome, entertainPersonsNumber);
+
     //Utilites Portion
     double userUtilites = UserUtilites(newMonthlyIncome);
 
     //Clothing Portion
     double userClothing = UserClothing(newMonthlyIncome);
 
-    //User Amount Used Already 
+    //User verification to move to amounts already used/leftover or exit
+    int userLeftoverVerificationNumber = UserContinueToLeftover();
 
+    //Ask user spending amounts or exit
+    if(userLeftoverVerificationNumber == 1)
+    {
+        //Input User Amounts Used Already
+        double userSavingSpent = AskUserSavingSpent();
+
+        double userHousingSpent = AskUserHousingSpent();
+
+        double userFoodSpent = AskUserFoodSpent();
+
+        double userTransportSpent = AskUserTransportSpent();
+
+        double userClothingSpent = AskUserClothingSpent();
+
+        double userEntertainPersonalSpent = AskUserEntertainPersonalSpent();
+
+        double userUtilitesSpent = AskUserUtilitesSpent();
+
+        //Display totals after spending
+
+        System.Console.WriteLine("");
+
+        MonthlySavingsAfterSpent(userSaving, userSavingSpent);
+
+        MonthlySavingsAfterSpent(userSaving, userSavingSpent);
     
+    }
+    else
+    {
+        ProgramExit();
+    }
     
-    
-    
-    //Methods
+
+    //Program Input Methods
     static double AskUserIncome()
     {
         System.Console.WriteLine("What is your monthly income? (Do not enter a dollar sign)");
@@ -137,22 +173,32 @@ static void BudgetCalculator()
         return(int.Parse(Console.ReadLine()));
     }
 
+    static double MonthlyIncomeNegative(ref double monthlyIncome)
+    {
+        while(monthlyIncome < 0)
+        {
+            System.Console.WriteLine($"Sorry, the amount you entered:{monthlyIncome}, should not be negative. ");
+            System.Console.WriteLine("Please press enter to try that again.");
+            Console.ReadKey();
+            Console.Clear();
+            monthlyIncome = AskUserIncome();
+        }
+        return(monthlyIncome);
+    }
+
+    //Calculating Methods
     static double MonthlySavings(double monthlyIncome)
     {
         double userSavings = monthlyIncome * savingsPortion;
         System.Console.WriteLine($"Savings: {userSavings.ToString("C2")}");
-        System.Console.WriteLine("");
 
         return(userSavings);
     }
-
-    //Calculating Methods
 
     static double UserHousing(double newMonthlyIncome)
         {
         double userHousing = (newMonthlyIncome * housingPortion);
         System.Console.WriteLine($"Housing: {userHousing.ToString("C2")}");
-        System.Console.WriteLine("");
 
         return(userHousing);
         }
@@ -161,7 +207,7 @@ static void BudgetCalculator()
         {
         double userFood = (newMonthlyIncome * foodPortion);
         System.Console.WriteLine($"Food: {userFood.ToString("C2")} ");
-        System.Console.WriteLine("");
+
         return(userFood);
         }
 
@@ -169,7 +215,6 @@ static void BudgetCalculator()
     {
         double userTransport = (newMonthlyIncome * transportPortion);
         System.Console.WriteLine($"Transport: {userTransport.ToString("C2")} ");
-        System.Console.WriteLine("");
 
         return(userTransport);
     }
@@ -178,7 +223,6 @@ static void BudgetCalculator()
         {
         double userClothing = (newMonthlyIncome * clothingPortion);
         System.Console.WriteLine($"Clothing: {userClothing.ToString("C2")} ");
-        System.Console.WriteLine("");
 
         return(userClothing);
         }
@@ -187,16 +231,14 @@ static void BudgetCalculator()
     {
         double userEntertain = (newMonthlyIncome * entertainPortion);
         System.Console.WriteLine($"Entertainment and Personal: {userEntertain.ToString("C2")} ");
-        System.Console.WriteLine("");
 
         return(userEntertain);
     }
 
-    static double MoneyPerPerson(double newMonthlyIncome, int entertainPersonNumber)
+    static double MoneyPerPerson(double newMonthlyIncome, int entertainPersonsNumber)
     {
-        double moneyPerPerson = (newMonthlyIncome * entertainPortion) / entertainPersonNumber;
+        double moneyPerPerson = (newMonthlyIncome * entertainPortion) / entertainPersonsNumber;
         System.Console.WriteLine($"Per person amount: {(moneyPerPerson).ToString("C2")}");
-        System.Console.WriteLine("");
 
         return(moneyPerPerson);
     }
@@ -205,10 +247,124 @@ static void BudgetCalculator()
     {
         double userUtilities = (newMonthlyIncome * utilitesPortion);
         System.Console.WriteLine($"Utilites: {userUtilities.ToString("C2")} ");
-        System.Console.WriteLine("");
 
         return(userUtilities);
     }
+
+    //After spending calculations
+    static void MonthlySavingsAfterSpent(double userSavings, double userSavingSpent)
+    {
+        double userSavingsLeftover = userSavings - userSavingSpent;
+        System.Console.WriteLine($"Savings Leftover: {userSavingsLeftover.ToString("C2")}");
+
+    }
+
+    static void MonthlyHousingAfterSpent(double userHousing, double userHousingSpent)
+    {
+        double userHousingLeftover = userHousing - userHousingSpent;
+        System.Console.WriteLine($"Savings Leftover: {userHousingLeftover.ToString("C2")}");
+
+    }
+
+    static void MonthlyFoodAfterSpent(double userFood, double userFoodSpent)
+    {
+        double userFoodLeftover = userFood - userFoodSpent;
+        System.Console.WriteLine($"Savings Leftover: {userFoodLeftover.ToString("C2")}");
+
+    }
+
+    static void MonthlyTransportAfterSpent(double userTransport, double userTransportSpent)
+    {
+        double userTransportLeftover = userTransport - userTransportSpent;
+        System.Console.WriteLine($"Savings Leftover: {userTransportLeftover.ToString("C2")}");
+
+    }
+
+    static void MonthlyClothingAfterSpent(double userClothing, double userClothingSpent)
+    {
+        double userClothingLeftover = userClothing - userClothingSpent;
+        System.Console.WriteLine($"Savings Leftover: {userClothingLeftover.ToString("C2")}");
+
+    }
+
+    static void MonthlyEntertainPersonalAfterSpent(double userEntertainPersonal, double userEntertainPersonalSpent)
+    {
+        double userEntertainPersonalLeftover = userEntertainPersonal - userEntertainPersonalSpent;
+        System.Console.WriteLine($"Savings Leftover: {userEntertainPersonalLeftover.ToString("C2")}");
+    }
+
+    static void MonthlyPerPersonAfterSpent( double userEntertainPersonalLeftover, int entertainPersonsNumber)
+    {
+        double userMonthlyPerPersonLeftover = userEntertainPersonalLeftover / entertainPersonsNumber;
+        System.Console.WriteLine($"Savings Leftover: {userMonthlyPerPersonLeftover.ToString("C2")}");
+
+    }
+
+    static void MonthlyUtilitesAfterSpent(double userUtilites, double userUtilitesSpent)
+    {
+        double userUtilitesLeftover = userUtilites - userUtilitesSpent;
+        System.Console.WriteLine($"Savings Leftover: {userUtilitesLeftover.ToString("C2")}");
+
+    }
+
+    //Methods for to get user amounts already used
+    static int UserContinueToLeftover()
+    {
+        System.Console.WriteLine("");
+        System.Console.WriteLine("Please enter 1 to continue to see amounts minus money you've already spent, or 0 to exit");
+        int userSavingsVerificationNumber = int.Parse(Console.ReadLine());
+        
+        return(userSavingsVerificationNumber);
+    }
+
+    static double AskUserSavingSpent()
+        {
+            System.Console.WriteLine("How much have you already added to savings?");
+            double userSavingSpent = double.Parse(Console.ReadLine());
+            return(userSavingSpent);
+        }
+
+    static double AskUserHousingSpent()
+        {
+            System.Console.WriteLine("How much have you already spent on housing?");
+            double userHousingSpent = double.Parse(Console.ReadLine());
+            return(userHousingSpent);
+        }
+
+    static double AskUserFoodSpent()
+        {
+            System.Console.WriteLine("How much have you already spent on food?");
+            double userFoodSpent = double.Parse(Console.ReadLine());
+            return(userFoodSpent);
+        }
+
+    static double AskUserTransportSpent()
+        {
+            System.Console.WriteLine("How much have you already spent on transport?");
+            double userTransportSpent = double.Parse(Console.ReadLine());
+            return(userTransportSpent);
+        }
+
+    static double AskUserClothingSpent()
+        {
+            System.Console.WriteLine("How much have you already spent on clothing?");
+            double userClothingSpent = double.Parse(Console.ReadLine());
+            return(userClothingSpent);
+        }
+
+    static double AskUserEntertainPersonalSpent()
+        {
+            System.Console.WriteLine("How much have you already spent on entertainment/personal?");
+            double userEntertainPersonalSpent = double.Parse(Console.ReadLine());
+            return(userEntertainPersonalSpent);
+        }
+
+    static double AskUserUtilitesSpent()
+        {
+            System.Console.WriteLine("How much have you already spent on utilites?");
+            double userUtilitesSpent = double.Parse(Console.ReadLine());
+            return(userUtilitesSpent);
+        }
 
     //Closing
     System.Console.WriteLine("Thank you for using the budget calculator!");
