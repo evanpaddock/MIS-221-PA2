@@ -452,47 +452,47 @@ static void CurrencyConverter(string userName)
         {   
             case 0:
             {
-                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_USD_RATE).ToString("C2")} Dollars");
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_USD_RATE).ToString("C2")} Dollars.");
             }
             break;
             case 1:
             {
-                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_POUND_RATE).ToString("C2")} Pounds"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_POUND_RATE).ToString("C2")} Pounds."); 
             }
             break;
             case 2:
             {
-                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_FRANCS_RATE).ToString("C2")} Francs"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_FRANCS_RATE).ToString("C2")} Francs."); 
             }
             break;
             case 3:
             {
-                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_RUPEES_RATE).ToString("C2")} Rupees"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_RUPEES_RATE).ToString("C2")} Rupees."); 
             }
             break;
             case 4:
             {
-                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_CAN_RATE).ToString("C2")} Canadian Dollars"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_CAN_RATE).ToString("C2")} Canadian Dollars."); 
             }
             break;
             case 5:
             {
-                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * ((1 - USD_POUND_RATE) + 1)).ToString("C2")} US Dollars"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * ((1 - USD_POUND_RATE) + 1)).ToString("C2")} US Dollars."); 
             }
             break;
             case 6:
             {
-                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * ((1 - USD_FRANCS_RATE) + 1)).ToString("C2")} US Dollars"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * ((1 - USD_FRANCS_RATE) + 1)).ToString("C2")} US Dollars."); 
             }
             break;
             case 7:
             {
-                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * ((1 - USD_RUPEES_RATE) + 1)).ToString("C2")} US Dollars"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * ((1 - USD_RUPEES_RATE) + 1)).ToString("C2")} US Dollars."); 
             }
             break;
             case 8:
             {
-                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * ((1 - USD_CAN_RATE) + 1)).ToString("C2")} US Dollars"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * ((1 - USD_CAN_RATE) + 1)).ToString("C2")} US Dollars."); 
             }
             break;
         }
