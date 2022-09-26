@@ -81,7 +81,7 @@ static void BudgetCalculator(string userName)
     Console.Clear();
 
 
-    System.Console.WriteLine("Welcome to the Budget Calculator!");
+    System.Console.WriteLine($"{userName}, welcome to the Budget Calculator!");
     System.Console.WriteLine("");
 
     //Ask Monthly Income
@@ -128,7 +128,11 @@ static void BudgetCalculator(string userName)
     int userLeftoverVerificationNumber = UserContinueToLeftover();
 
     //Ask user spending amounts or exit ***EXTRA
-    if(userLeftoverVerificationNumber == 1)
+    if(userLeftoverVerificationNumber == 0)
+    {
+        ProgramExit(userName);
+    }
+    else
     {
         //Input User Amounts Used Already
         double userSavingSpent = AskUserSavingSpent();
@@ -168,11 +172,6 @@ static void BudgetCalculator(string userName)
         MonthlyUtilitesAfterSpent(userUtilites, userUtilitesSpent);
 
         MonthlyClothingAfterSpent(userClothing, userClothingSpent);
-    
-    }
-    else
-    {
-        ProgramExit(userName);
     }
     
 
@@ -386,7 +385,11 @@ static void BudgetCalculator(string userName)
         }
 
     //Closing
-    ProgramExit(userName);
+    if(userLeftoverVerificationNumber == 1)
+    {
+        ProgramExit(userName);
+    }
+    
 }
 
 static void CurrencyConverter(string userName)
@@ -399,6 +402,8 @@ static void CurrencyConverter(string userName)
     const double USD_CAN_RATE = 1.315;
 
     //Main
+    Console.Clear();
+
     System.Console.WriteLine("This is the Currency Converter!");
     System.Console.WriteLine("");
 
@@ -502,5 +507,6 @@ static void CurrencyConverter(string userName)
 static void ProgramExit(string userName)
 
 {
+    System.Console.WriteLine("");
     System.Console.WriteLine($"{userName}, thank you for using the program! This application is now closing.");
 }
