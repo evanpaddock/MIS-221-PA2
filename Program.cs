@@ -5,7 +5,7 @@ int userMenuSelection = AskSelection(userName);
 
 VerifySelection(ref userMenuSelection, userName);
 
-ProgramRun(userMenuSelection);
+ProgramRun(userMenuSelection, userName);
 
 //Main Methods
 static string GetUserName()
@@ -41,31 +41,31 @@ static int VerifySelection(ref int userMenuSelection, string userName)
     return(userMenuSelection);
 }
 
-static void ProgramRun(int userMenuSelection)
+static void ProgramRun(int userMenuSelection, string userName)
 {
     switch(userMenuSelection)
     {
         case 1:
         {
-            BudgetCalculator();
+            BudgetCalculator(userName);
         }
         break;
 
         case 2:
         {
-            CurrencyConverter();
+            CurrencyConverter(userName);
         }
         break;
         case 3:
         {
-            ProgramExit();
+            ProgramExit(userName);
         }
         break;
     };
 }
 
 //Program Methods
-static void BudgetCalculator()
+static void BudgetCalculator(string userName)
 {
     //constants
     const double SAVINGS_PORTION = .2;
@@ -88,6 +88,7 @@ static void BudgetCalculator()
     double monthlyIncome = 0;
     monthlyIncome = AskUserIncome();
 
+    //EXTRA***
     //Tests if Monthly Income is negative. If so will rerun until it is not, this is because monthly income cannot be negative for an individual
     monthlyIncome = MonthlyIncomeNegative(ref monthlyIncome);
 
@@ -126,7 +127,7 @@ static void BudgetCalculator()
     //User verification to move to amounts already used/leftover or exit
     int userLeftoverVerificationNumber = UserContinueToLeftover();
 
-    //Ask user spending amounts or exit
+    //Ask user spending amounts or exit ***EXTRA
     if(userLeftoverVerificationNumber == 1)
     {
         //Input User Amounts Used Already
@@ -171,7 +172,7 @@ static void BudgetCalculator()
     }
     else
     {
-        ProgramExit();
+        ProgramExit(userName);
     }
     
 
@@ -385,10 +386,10 @@ static void BudgetCalculator()
         }
 
     //Closing
-    System.Console.WriteLine("Thank you for using the budget calculator!");
+    ProgramExit(userName);
 }
 
-static void CurrencyConverter()
+static void CurrencyConverter(string userName)
 {
     //Constants
     const double USD_USD_RATE = 1;
@@ -407,7 +408,7 @@ static void CurrencyConverter()
 
     double startNumber = StartNumber();
 
-    BreakIntoCalculations(userCurrencySelection, startNumber);
+    BreakIntoCalculations(userCurrencySelection, startNumber, userName);
 
     //Main Methods
     static int UserSelection()
@@ -445,61 +446,61 @@ static void CurrencyConverter()
         return(double.Parse(Console.ReadLine()));
     }
 
-    static void BreakIntoCalculations(int userCurrencySelection, double startNumber)
+    static void BreakIntoCalculations(int userCurrencySelection, double startNumber, string userName)
     {
         switch(userCurrencySelection)
         {   
             case 0:
             {
-                System.Console.WriteLine($"This conversion gives you {(startNumber * USD_USD_RATE).ToString("C2")} Dollars");
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_USD_RATE).ToString("C2")} Dollars");
             }
             break;
             case 1:
             {
-                System.Console.WriteLine($"This conversion gives you {(startNumber * USD_POUND_RATE).ToString("C2")} Pounds"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_POUND_RATE).ToString("C2")} Pounds"); 
             }
             break;
             case 2:
             {
-                System.Console.WriteLine($"This conversion gives you {(startNumber * USD_FRANCS_RATE).ToString("C2")} Francs"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_FRANCS_RATE).ToString("C2")} Francs"); 
             }
             break;
             case 3:
             {
-                System.Console.WriteLine($"This conversion gives you {(startNumber * USD_RUPEES_RATE).ToString("C2")} Rupees"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_RUPEES_RATE).ToString("C2")} Rupees"); 
             }
             break;
             case 4:
             {
-                System.Console.WriteLine($"This conversion gives you {(startNumber * USD_CAN_RATE).ToString("C2")} Canadian Dollars"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * USD_CAN_RATE).ToString("C2")} Canadian Dollars"); 
             }
             break;
             case 5:
             {
-                System.Console.WriteLine($"This conversion gives you {(startNumber * ((1 - USD_POUND_RATE) + 1)).ToString("C2")} US Dollars"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * ((1 - USD_POUND_RATE) + 1)).ToString("C2")} US Dollars"); 
             }
             break;
             case 6:
             {
-                System.Console.WriteLine($"This conversion gives you {(startNumber * ((1 - USD_FRANCS_RATE) + 1)).ToString("C2")} US Dollars"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * ((1 - USD_FRANCS_RATE) + 1)).ToString("C2")} US Dollars"); 
             }
             break;
             case 7:
             {
-                System.Console.WriteLine($"This conversion gives you {(startNumber * ((1 - USD_RUPEES_RATE) + 1)).ToString("C2")} US Dollars"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * ((1 - USD_RUPEES_RATE) + 1)).ToString("C2")} US Dollars"); 
             }
             break;
             case 8:
             {
-                System.Console.WriteLine($"This conversion gives you {(startNumber * ((1 - USD_CAN_RATE) + 1)).ToString("C2")} US Dollars"); 
+                System.Console.WriteLine($"{userName}, this conversion gives you {(startNumber * ((1 - USD_CAN_RATE) + 1)).ToString("C2")} US Dollars"); 
             }
             break;
         }
     }
 }
 
-static void ProgramExit()
+static void ProgramExit(string userName)
 
 {
-    System.Console.WriteLine("The program is now closing.");
+    System.Console.WriteLine($"{userName}, thank you for using the program! This application is now closing.");
 }
