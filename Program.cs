@@ -138,11 +138,11 @@ static void BudgetCalculator()
 
         double userTransportSpent = AskUserTransportSpent();
 
-        double userClothingSpent = AskUserClothingSpent();
-
         double userEntertainPersonalSpent = AskUserEntertainPersonalSpent();
 
         double userUtilitesSpent = AskUserUtilitesSpent();
+
+        double userClothingSpent = AskUserClothingSpent();
 
         //Display totals after spending
 
@@ -150,7 +150,19 @@ static void BudgetCalculator()
 
         MonthlySavingsAfterSpent(userSaving, userSavingSpent);
 
-        MonthlySavingsAfterSpent(userSaving, userSavingSpent);
+        MonthlyHousingAfterSpent(userHousing, userHousingSpent);
+
+        MonthlyFoodAfterSpent(userFood, userFoodSpent);
+
+        MonthlyTransportAfterSpent(userTransport, userTransportSpent);
+
+        double userEntertainPersonalLeftover = MonthlyEntertainPersonalAfterSpent(userEntertainPersonal, userEntertainPersonalSpent);
+
+        MonthlyPerPersonAfterSpent(userEntertainPersonalLeftover, entertainPersonsNumber);
+
+        MonthlyUtilitesAfterSpent(userUtilites, userUtilitesSpent);
+
+        MonthlyClothingAfterSpent(userClothing, userClothingSpent);
     
     }
     else
@@ -262,48 +274,50 @@ static void BudgetCalculator()
     static void MonthlyHousingAfterSpent(double userHousing, double userHousingSpent)
     {
         double userHousingLeftover = userHousing - userHousingSpent;
-        System.Console.WriteLine($"Savings Leftover: {userHousingLeftover.ToString("C2")}");
+        System.Console.WriteLine($"Housing Leftover: {userHousingLeftover.ToString("C2")}");
 
     }
 
     static void MonthlyFoodAfterSpent(double userFood, double userFoodSpent)
     {
         double userFoodLeftover = userFood - userFoodSpent;
-        System.Console.WriteLine($"Savings Leftover: {userFoodLeftover.ToString("C2")}");
+        System.Console.WriteLine($"Food Leftover: {userFoodLeftover.ToString("C2")}");
 
     }
 
     static void MonthlyTransportAfterSpent(double userTransport, double userTransportSpent)
     {
         double userTransportLeftover = userTransport - userTransportSpent;
-        System.Console.WriteLine($"Savings Leftover: {userTransportLeftover.ToString("C2")}");
+        System.Console.WriteLine($"Transport Leftover: {userTransportLeftover.ToString("C2")}");
 
     }
 
     static void MonthlyClothingAfterSpent(double userClothing, double userClothingSpent)
     {
         double userClothingLeftover = userClothing - userClothingSpent;
-        System.Console.WriteLine($"Savings Leftover: {userClothingLeftover.ToString("C2")}");
+        System.Console.WriteLine($"Clothing Leftover: {userClothingLeftover.ToString("C2")}");
 
     }
 
-    static void MonthlyEntertainPersonalAfterSpent(double userEntertainPersonal, double userEntertainPersonalSpent)
+    static double MonthlyEntertainPersonalAfterSpent(double userEntertainPersonal, double userEntertainPersonalSpent)
     {
         double userEntertainPersonalLeftover = userEntertainPersonal - userEntertainPersonalSpent;
-        System.Console.WriteLine($"Savings Leftover: {userEntertainPersonalLeftover.ToString("C2")}");
+        System.Console.WriteLine($"Entertain/Personal Leftover: {userEntertainPersonalLeftover.ToString("C2")}");
+
+        return(userEntertainPersonalLeftover);
     }
 
     static void MonthlyPerPersonAfterSpent( double userEntertainPersonalLeftover, int entertainPersonsNumber)
     {
-        double userMonthlyPerPersonLeftover = userEntertainPersonalLeftover / entertainPersonsNumber;
-        System.Console.WriteLine($"Savings Leftover: {userMonthlyPerPersonLeftover.ToString("C2")}");
+        double userMonthlyPerPersonRemaining = (userEntertainPersonalLeftover / entertainPersonsNumber);
+        System.Console.WriteLine($"Money Per Person Leftover: {userMonthlyPerPersonRemaining.ToString("C2")}");
 
     }
 
     static void MonthlyUtilitesAfterSpent(double userUtilites, double userUtilitesSpent)
     {
         double userUtilitesLeftover = userUtilites - userUtilitesSpent;
-        System.Console.WriteLine($"Savings Leftover: {userUtilitesLeftover.ToString("C2")}");
+        System.Console.WriteLine($"Utilites Leftover: {userUtilitesLeftover.ToString("C2")}");
 
     }
 
