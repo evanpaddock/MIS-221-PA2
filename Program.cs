@@ -68,13 +68,13 @@ static void ProgramRun(int userMenuSelection)
 static void BudgetCalculator()
 {
     //constants
-    const double savingsPortion = .2;
-    const double housingPortion = .25;
-    const double foodPortion = .16;
-    const double transportPortion = .15;
-    const double entertainPortion = .25;
-    const double utilitesPortion = .11;
-    const double clothingPortion = .08;
+    const double SAVINGS_PORTION = .2;
+    const double HOUSING_PORTION = .25;
+    const double FOOD_PORTION = .16;
+    const double TRANSPORT_PORTION = .15;
+    const double ENTERTAIN_PORTION = .25;
+    const double UTILITES_PORTION = .11;
+    const double CLOTHING_PORTION = .08;
     
 
     //Program Start
@@ -148,6 +148,10 @@ static void BudgetCalculator()
 
         System.Console.WriteLine("");
 
+        System.Console.WriteLine("If the number is in (), it is how much over you have spent");
+
+        System.Console.WriteLine("");
+
         MonthlySavingsAfterSpent(userSaving, userSavingSpent);
 
         MonthlyHousingAfterSpent(userHousing, userHousingSpent);
@@ -201,7 +205,7 @@ static void BudgetCalculator()
     //Calculating Methods
     static double MonthlySavings(double monthlyIncome)
     {
-        double userSavings = monthlyIncome * savingsPortion;
+        double userSavings = monthlyIncome * SAVINGS_PORTION;
         System.Console.WriteLine($"Savings: {userSavings.ToString("C2")}");
 
         return(userSavings);
@@ -209,7 +213,7 @@ static void BudgetCalculator()
 
     static double UserHousing(double newMonthlyIncome)
         {
-        double userHousing = (newMonthlyIncome * housingPortion);
+        double userHousing = (newMonthlyIncome * HOUSING_PORTION);
         System.Console.WriteLine($"Housing: {userHousing.ToString("C2")}");
 
         return(userHousing);
@@ -217,7 +221,7 @@ static void BudgetCalculator()
 
     static double UserFood(double newMonthlyIncome)
         {
-        double userFood = (newMonthlyIncome * foodPortion);
+        double userFood = (newMonthlyIncome * FOOD_PORTION);
         System.Console.WriteLine($"Food: {userFood.ToString("C2")} ");
 
         return(userFood);
@@ -225,7 +229,7 @@ static void BudgetCalculator()
 
     static double UserTransport(double newMonthlyIncome)
     {
-        double userTransport = (newMonthlyIncome * transportPortion);
+        double userTransport = (newMonthlyIncome * TRANSPORT_PORTION);
         System.Console.WriteLine($"Transport: {userTransport.ToString("C2")} ");
 
         return(userTransport);
@@ -233,7 +237,7 @@ static void BudgetCalculator()
 
     static double UserClothing(double newMonthlyIncome)
         {
-        double userClothing = (newMonthlyIncome * clothingPortion);
+        double userClothing = (newMonthlyIncome * CLOTHING_PORTION);
         System.Console.WriteLine($"Clothing: {userClothing.ToString("C2")} ");
 
         return(userClothing);
@@ -241,7 +245,7 @@ static void BudgetCalculator()
     
     static double UserEntertainPersonal(double newMonthlyIncome)
     {
-        double userEntertain = (newMonthlyIncome * entertainPortion);
+        double userEntertain = (newMonthlyIncome * ENTERTAIN_PORTION);
         System.Console.WriteLine($"Entertainment and Personal: {userEntertain.ToString("C2")} ");
 
         return(userEntertain);
@@ -249,7 +253,7 @@ static void BudgetCalculator()
 
     static double MoneyPerPerson(double newMonthlyIncome, int entertainPersonsNumber)
     {
-        double moneyPerPerson = (newMonthlyIncome * entertainPortion) / entertainPersonsNumber;
+        double moneyPerPerson = (newMonthlyIncome * ENTERTAIN_PORTION) / entertainPersonsNumber;
         System.Console.WriteLine($"Per person amount: {(moneyPerPerson).ToString("C2")}");
 
         return(moneyPerPerson);
@@ -257,7 +261,7 @@ static void BudgetCalculator()
 
     static double UserUtilites(double newMonthlyIncome)
     {
-        double userUtilities = (newMonthlyIncome * utilitesPortion);
+        double userUtilities = (newMonthlyIncome * UTILITES_PORTION);
         System.Console.WriteLine($"Utilites: {userUtilities.ToString("C2")} ");
 
         return(userUtilities);
@@ -386,7 +390,112 @@ static void BudgetCalculator()
 
 static void CurrencyConverter()
 {
-    System.Console.WriteLine("Ths is the Currency Converter!");
+    //Constants
+    const double USD_USD_RATE = 1;
+    const double USD_POUND_RATE = 0.683;
+    const double USD_FRANCS_RATE = 0.98;
+    const double USD_RUPEES_RATE = 79.58;
+    const double USD_CAN_RATE = 1.315;
+
+    //Main
+    System.Console.WriteLine("This is the Currency Converter!");
+    System.Console.WriteLine("");
+
+    int userCurrencySelection = UserSelection();
+
+    userCurrencySelection = VerifyCurrencySelection(ref userCurrencySelection);
+
+    double startNumber = StartNumber();
+
+    BreakIntoCalculations(userCurrencySelection, startNumber);
+
+    //Main Methods
+    static int UserSelection()
+    {
+        System.Console.WriteLine("Press:");
+        System.Console.WriteLine("0 for USD to USD");
+        System.Console.WriteLine("1 for USD to POUND");
+        System.Console.WriteLine("2 for USD to FRANC");
+        System.Console.WriteLine("3 for USD to RUPEE");
+        System.Console.WriteLine("4 for USD to CAN_$");
+        System.Console.WriteLine("5 for POUND to USD");
+        System.Console.WriteLine("6 for FRANC to USD");
+        System.Console.WriteLine("7 for RUPEE to USD");
+        System.Console.WriteLine("8 for CAN_$ to USD");
+        return(int.Parse(Console.ReadLine()));
+    }
+
+    static int VerifyCurrencySelection(ref int userCurrencySelection)
+    {   
+        while(userCurrencySelection > 8 || userCurrencySelection < 0)
+        {   
+            Console.Clear();
+            System.Console.WriteLine("Please try that again. Your selection is not valid");
+            System.Console.WriteLine("");
+            userCurrencySelection = UserSelection();
+            
+        }
+
+        return(userCurrencySelection);
+    }
+
+    static double StartNumber()
+    {
+        System.Console.WriteLine("What number do you wish to convert from?");
+        return(double.Parse(Console.ReadLine()));
+    }
+
+    static void BreakIntoCalculations(int userCurrencySelection, double startNumber)
+    {
+        switch(userCurrencySelection)
+        {   
+            case 0:
+            {
+                System.Console.WriteLine($"This conversion gives you {(startNumber * USD_USD_RATE).ToString("C2")} Dollars");
+            }
+            break;
+            case 1:
+            {
+                System.Console.WriteLine($"This conversion gives you {(startNumber * USD_POUND_RATE).ToString("C2")} Pounds"); 
+            }
+            break;
+            case 2:
+            {
+                System.Console.WriteLine($"This conversion gives you {(startNumber * USD_FRANCS_RATE).ToString("C2")} Francs"); 
+            }
+            break;
+            case 3:
+            {
+                System.Console.WriteLine($"This conversion gives you {(startNumber * USD_RUPEES_RATE).ToString("C2")} Rupees"); 
+            }
+            break;
+            case 4:
+            {
+                System.Console.WriteLine($"This conversion gives you {(startNumber * USD_CAN_RATE).ToString("C2")} Canadian Dollars"); 
+            }
+            break;
+            case 5:
+            {
+                System.Console.WriteLine($"This conversion gives you {(startNumber * ((1 - USD_POUND_RATE) + 1)).ToString("C2")} US Dollars"); 
+            }
+            break;
+            case 6:
+            {
+                System.Console.WriteLine($"This conversion gives you {(startNumber * ((1 - USD_FRANCS_RATE) + 1)).ToString("C2")} US Dollars"); 
+            }
+            break;
+            case 7:
+            {
+                System.Console.WriteLine($"This conversion gives you {(startNumber * ((1 - USD_RUPEES_RATE) + 1)).ToString("C2")} US Dollars"); 
+            }
+            break;
+            case 8:
+            {
+                System.Console.WriteLine($"This conversion gives you {(startNumber * ((1 - USD_CAN_RATE) + 1)).ToString("C2")} US Dollars"); 
+            }
+            break;
+        }
+    }
 }
 
 static void ProgramExit()
